@@ -1,0 +1,4 @@
+path:
+  movie: "dataset/movies.csv"
+  finantial: "dataset/finantials.csv"
+  opening: "dataset/opening_gross.csv"
