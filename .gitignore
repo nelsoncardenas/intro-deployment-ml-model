@@ -135,3 +135,4 @@ deploy_env/
 *.json
 *.csv
 *.pkl
+*.DS_Store
