@@ -1,8 +1,13 @@
 # prod
-pandas==1.4.3
-scikit-learn==1.1.1
+pandas~=1.4.3
+scikit-learn~=1.1.1
+matplotlib~=3.5.2
+seaborn~=0.11.2
+dvc~=2.12.0
+dvc[gs]
+pyyaml
 
 # dev
 jupyter
-dvc
-dvc[gs]
+flake8~=4.0.1
+black~=22.6.0

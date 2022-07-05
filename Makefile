@@ -16,9 +16,22 @@ connect_dvc_to_datalake:
 	dvc remote add model-track gs://model-data-tracker-775/model
 
 add_track_for_datasets:
+	dvc add dataset/finantials.csv
+	dvc add dataset/opening_gross.csv
+	dvc add dataset/movies.csv
+
+add_track_for_models:
+	dvc add model/model.pkl
+
+push_track_for_datasets:
+	dvc push dataset/finantials.csv -r dataset-track
+	dvc push dataset/opening_gross.csv -r dataset-track
+	dvc push dataset/movies.csv -r dataset-track
+
+push_track_for_models:
+	dvc push model/model.pkl -r model-track
+
+bad_add_track_for_datasets:
 	dvc add dataset/finantials.csv --to-remote -r dataset-track
 	dvc add dataset/opening_gross.csv --to-remote -r dataset-track
 	dvc add dataset/movies.csv --to-remote -r dataset-track
-
-add_track_for_models:
-	dvc add model/model.pkl --to-remote -r model-track
