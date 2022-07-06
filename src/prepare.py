@@ -4,7 +4,7 @@ import logging
 from dvc import api
 import pandas as pd
 
-from utils import get_config
+from model_utils import get_config
 
 
 def filter_and_combine_data(
@@ -55,6 +55,6 @@ opening_df = pd.read_csv(opening_data_path)
 
 full_movie_data = filter_and_combine_data(movie_df, finantial_df, opening_df)
 
-full_movie_data.to_csv("dataset/full_data.csv", index=False)
+full_movie_data.to_csv(config["path"]["full_data"], index=False)
 
 logger.info("Data Fetched and prepared...")

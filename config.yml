@@ -2,3 +2,6 @@ path:
   movie: "dataset/movies.csv"
   finantial: "dataset/finantials.csv"
   opening: "dataset/opening_gross.csv"
+  full_data: "dataset/full_data.csv"
+  model: "model/model.pkl"
+random_state: 230
