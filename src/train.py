@@ -5,7 +5,13 @@ from sklearn.impute import SimpleImputer
 from sklearn.ensemble import GradientBoostingRegressor
 import pandas as pd
 
-from model_utils import build_logger, get_config, update_model
+from model_utils import (
+    build_logger,
+    get_config,
+    update_model,
+    save_simple_metrics_report,
+    get_model_performance,
+)
 
 
 logger = build_logger(__name__)
@@ -42,12 +48,24 @@ final_result = cross_validate(
 )
 
 train_score = np.mean(final_result["train_score"])
-test_score = np.mean(final_result["test_score"])
-logger.info("Train score: {train_score}")
-logger.info("Test score: {test_score}")
+validation_score = np.mean(final_result["test_score"])
+test_score = grid_search.best_estimator_.score(X_test, y_test)
+logger.info(f"Train score: {train_score}")
+logger.info(f"Validation score: {validation_score}")
+logger.info(f"Test score: {test_score}")
 
 assert train_score > 0.7
-assert test_score > 0.65
+assert validation_score > 0.65
 
 logger.info("Updating model...")
 update_model(grid_search.best_estimator_)
+
+logger.info("Generating model report...")
+save_simple_metrics_report(
+    train_score, test_score, validation_score, grid_search.best_estimator_
+)
+
+y_test_pred = grid_search.best_estimator_.predict(X_test)
+get_model_performance(y_test, y_test_pred)
+
+logger.info("Training finished")
