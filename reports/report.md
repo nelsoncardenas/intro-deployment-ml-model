@@ -10,5 +10,5 @@
 | **metric**       | **value** |
 | ---------------- | --------- |
 | Train score      | 0.96964   |
-| Test score       | 0.72814   |
-| Validation score | 0.74274   |
+| Test score       | 0.73641   |
+| Validation score | 0.74722   |
