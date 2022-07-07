@@ -35,3 +35,7 @@ bad_add_track_for_datasets:
 	dvc add dataset/finantials.csv --to-remote -r dataset-track
 	dvc add dataset/opening_gross.csv --to-remote -r dataset-track
 	dvc add dataset/movies.csv --to-remote -r dataset-track
+
+create_dvc_dag:
+	dvc run -n prepare -o dataset/full_data.csv python src/prepare.py
+	dvc run -n training -d dataset/full_data.csv python src/train.py
