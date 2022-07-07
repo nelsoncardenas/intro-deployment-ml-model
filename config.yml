@@ -1,0 +1,15 @@
+path:
+  movie: "dataset/movies.csv"
+  finantial: "dataset/finantials.csv"
+  opening: "dataset/opening_gross.csv"
+  full_data: "dataset/full_data.csv"
+  model: "model/model.pkl"
+  report: "reports/report.md"
+  image_behaviour: "reports/prediction_behaviour.png"
+random_state: 230
+report_template: |
+  | **metric**       | **value** |
+  | ---------------- | --------- |
+  | Train score      | ${train_score}   |
+  | Test score       | ${test_score}   |
+  | Validation score | ${validation_score}   |
