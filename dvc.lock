@@ -9,6 +9,9 @@ stages:
   training:
     cmd: python src/train.py
     deps:
+    - path: config.yml
+      md5: ab2c96a8133f139393ed5c35cf7d4572
+      size: 497
     - path: dataset/full_data.csv
       md5: 8905634bcd80b3e51f5b8963dde50c3b
       size: 167877

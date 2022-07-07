@@ -36,7 +36,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 logger.info("Setting hyperparameter to tune...")
-param_tunning = {"core_model__n_estimators": [1, 5, 10] + list(range(20, 501, 20))}
+param_tunning = {"core_model__n_estimators": list(range(20, 400, 20))}
 grid_search = GridSearchCV(pipeline, param_grid=param_tunning, scoring="r2", cv=5)
 
 logger.info("Starting grid search...")

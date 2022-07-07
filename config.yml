@@ -6,7 +6,7 @@ path:
   model: "model/model.pkl"
   report: "reports/report.md"
   image_behaviour: "reports/prediction_behaviour.png"
-random_state: 230
+random_state: 42
 report_template: |
   | **metric**       | **value** |
   | ---------------- | --------- |
