@@ -42,3 +42,9 @@ create_dvc_dag:
 
 serve_app:
 	uvicorn api.main:app --reload
+
+docker_build:
+	DOCKER_BUILDKIT=1 docker build . -t model-api:v1
+
+docker_run:
+	docker run -p 8000:8000 model-api:v1
