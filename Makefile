@@ -39,3 +39,6 @@ bad_add_track_for_datasets:
 create_dvc_dag:
 	dvc run -n prepare -o dataset/full_data.csv python src/prepare.py
 	dvc run -n training -d dataset/full_data.csv python src/train.py
+
+serve_app:
+	uvicorn api.main:app --reload
