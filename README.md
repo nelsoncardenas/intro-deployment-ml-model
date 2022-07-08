@@ -32,3 +32,7 @@ Let's create and download a json key.
 
 Create a bucket called "model-dataset-tracker"
 
+- Create a service account with Roles: Storage Admin, Cloud Run Admin and Service Account User.
+- Download service account json
+- Transform into b64 code.
+- Add this code to ACtions Secrets.
