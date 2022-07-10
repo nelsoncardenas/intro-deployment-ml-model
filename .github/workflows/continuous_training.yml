@@ -39,16 +39,16 @@ jobs:
           echo "Training Completed"
           dvc add model/model.pkl -r model-track --to-remote
           dvc push model/model.pkl.dvc -r model-track
+      - name: Test new model
+        run: |
+          source venv/bin/activate
+          pytest
       - name: Commit .dvc file changes
         run: |
           git config --local user.email "nelsoncardenas28@gmail.com"
           git config --local user.name "github-actions[bot]"
           git add model/model.pkl.dvc
           git commit -m "Updating model serialization by GitHub Actions"
-      - name: Test new model
-        run: |
-          source venv/bin/activate
-          pytest
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
