@@ -6,10 +6,6 @@ on:
         description: Why to run this?
         required: false
         default: running CT
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
 jobs:
   continuous-training:
     runs-on: ubuntu-latest
@@ -19,41 +15,23 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install requirements
+      - name: Train model
+        env:
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
         run: |
           pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
           pip install -r requirements/requirements_train.txt
-          pip install -r requirements/requirements_app.txt
-          pip install pytest
-      - name: Train model
-        env:
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        run: |
-          source venv/bin/activate
           export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
           dvc pull model/model.pkl.dvc -r model-track
           dvc unprotect model/model.pkl
           dvc repro -f 
           echo "Training Completed"
-      - name: Test new model
-        run: |
-          source venv/bin/activate
-          pytest
-      - name: Push new model
-        env:
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        run: |
-          source venv/bin/activate
-          export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
           dvc add model/model.pkl -r model-track --to-remote
           dvc push model/model.pkl.dvc -r model-track
-          # Commit .dvc file changes
+      - name: Commit .dvc file changes
+        run: |
           git config --local user.email "nelsoncardenas28@gmail.com"
           git config --local user.name "github-actions[bot]"
           git add model/model.pkl.dvc
