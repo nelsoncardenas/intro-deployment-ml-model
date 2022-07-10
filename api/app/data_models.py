@@ -30,7 +30,7 @@ class PredictionRequest(BaseModel):
 
 
 class PredictionResponse(BaseModel):
-    worldwide_gross: float
+    worldwide_gross: str
 
     class Config:
         extra = "forbid"
