@@ -45,6 +45,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add model/model.pkl.dvc
           git commit -m "Updating model serialization by GitHub Actions"
+      - name: Test new model
+        run: |
+          source venv/bin/activate
+          pytest
       - uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
