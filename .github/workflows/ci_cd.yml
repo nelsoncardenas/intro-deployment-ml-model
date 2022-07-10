@@ -3,7 +3,6 @@ on:
   push:
      branches:
       - main
-      - 9-workflow_CI_CD
   workflow_run:
     workflows: ["Continuous Training"]
     branches: [main]
@@ -13,7 +12,7 @@ on:
     inputs:
       reason:
         description: Why to run this?
-        required: false
+        required: true
         default: running CI/CD
 jobs:
   ci_cd:
