@@ -22,7 +22,7 @@ def test_null_prediction():
         },
     )
     assert response.status_code == 200
-    assert response.json()["worldwide_gross"] == 0
+    assert response.json()["worldwide_gross"] == '$ 0.00'
 
 
 def test_random_prediction():
@@ -41,4 +41,4 @@ def test_random_prediction():
         },
     )
     assert response.status_code == 200
-    assert response.json()["worldwide_gross"] != 0
+    assert response.json()["worldwide_gross"] != '$ 0.00'
