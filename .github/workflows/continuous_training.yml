@@ -19,14 +19,19 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Train model
-        env:
-          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+      - name: Install requirements
         run: |
           pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
           pip install -r requirements/requirements_train.txt
+          pip install -r requirements/requirements_app.txt
+          pip install pytest
+      - name: Train model
+        env:
+          SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+        run: |
+          source venv/bin/activate
           export GOOGLE_APPLICATION_CREDENTIALS=$(python utilities/setter.py)
           dvc pull model/model.pkl.dvc -r model-track
           dvc unprotect model/model.pkl
