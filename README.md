@@ -32,3 +32,8 @@ Google technologies
 - Google Credentials
 - Google Cloud Storage
 - Google Cloud Run
+
+## Sources to deploy in AWS
+
+* https://medium.com/analytics-vidhya/python-fastapi-and-aws-lambda-container-3e524c586f01
+* https://towardsdatascience.com/fastapi-aws-robust-api-part-1-f67ae47390f9
